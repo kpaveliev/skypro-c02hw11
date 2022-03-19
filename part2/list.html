@@ -12,6 +12,12 @@
             <a href="/candidate/{{ candidate.id }}">{{ candidate.name }}</a>
         </p>
     {% endfor %}
+    <hr>
+    <form action="/search" method="POST">
+    <p>Поиск по навыкам</p>
+    <input type="text" name="searched_skill" placeholder="например, python"><br>
+    <input type="submit" value="отправить">
+    </form>
 
 </body>
 </html>

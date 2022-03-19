@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 from part2.utils import load_candidates_from_json, get_candidate, find_candidates_by_name, find_candidates_by_skill
 
-app = Flask(__name__, template_folder='part2')
+app = Flask(__name__, template_folder='part2', static_folder='part2')
 filename ='part2/candidates.json'
 candidates = load_candidates_from_json(filename)
 

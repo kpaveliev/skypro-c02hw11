@@ -21,19 +21,21 @@ def candidates_by_name(candidate_name):
     return render_template('search.html',
                            candidates=candidates_found, number_found=len(candidates_found))
 
-@app.route('/skill/<skill_name>')
+@app.route('/skill/<skill_name>', methods=["GET", "POST"])
 def candidates_by_skill(skill_name):
+    if request.method == 'POST':
+        skill_name = request.form['searched_skill']
     candidates_found = find_candidates_by_skill(candidates, skill_name)
     return render_template('skill.html', candidates=candidates_found,
                            number_found=len(candidates_found), skill_name=skill_name)
 
-# Additional (not required)
-@app.route('/search', methods=["GET", "POST"])
-def search_skill():
-    searched_skill = request.form['searched_skill']
-    candidates_found = find_candidates_by_skill(candidates, searched_skill)
-    return render_template('skill.html', candidates=candidates_found,
-                           number_found=len(candidates_found), skill_name=searched_skill)
+# Additional (not required, added into candidates_by_skill)
+# @app.route('/search', methods=["GET", "POST"])
+# def search_skill():
+#     searched_skill = request.form['searched_skill']
+#     candidates_found = find_candidates_by_skill(candidates, searched_skill)
+#     return render_template('skill.html', candidates=candidates_found,
+#                            number_found=len(candidates_found), skill_name=searched_skill)
 
 if __name__ == '__main__':
     app.run()
